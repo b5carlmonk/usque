@@ -14,6 +14,9 @@ RUN go build -o usque -ldflags="-s -w" .
 # scratch won't be enough, because we need a cert store
 FROM alpine:latest
 
+# keep the image up to date with latest security patches
+RUN apk --no-cache upgrade
+
 WORKDIR /app
 
 COPY --from=builder /app/usque /bin/usque
